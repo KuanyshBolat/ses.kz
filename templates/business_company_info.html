@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="select__main-info">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for count, form in company_worker_forms %}
+                        <div class="mb-3">
+                            <label class="form-label">{{ count }} сотрудник</label>
+                            <select name="position" class="form-select" aria-label="Default select example">
+                                {% for position_id, position_text in company_worker_class.POSITION_CHOICES %}
+                                    <option value="{{ position_id }}"
+                                            {% if form.position.value == position_id|stringformat:"i" %}
+                                            selected
+                                            {% endif %}
+                                    >
+                                        {{ position_text }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <div class="text-danger">
+                                {{ form.errors.position }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="mb-3">
+                        <label class="form-label">Предпочитаемый р-н</label>
+                        <select class="form-select" aria-label="Default select example" name="region">
+                            {% for region_id, region_text in business_center_class.REGION_CHOICES %}
+                                <option value="{{ region_id }}"
+                                        {% if form_region.region.value == region_id|stringformat:"i" %}
+                                            selected
+                                        {% endif %}
+                                >
+                                    {{ region_text }}
+
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="text-danger">
+                            {{ form_region.errors.region }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Продолжить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

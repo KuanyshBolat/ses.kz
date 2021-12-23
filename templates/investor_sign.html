@@ -1,0 +1,95 @@
+{% extends 'lk.html' %}
+{% block sign %}
+    <div class="sign__form">
+        <div class="page__position">
+            <ul class="position__list">
+                <li class="position__item"><a href="index.html" class="position__link">Главная</a></li>
+                <li class="position__item"><a> > </a></li>
+                <li class="position__item"><a href="profile.html" class="position__link">Мой кабинет</a>
+                </li>
+                <li class="position__item"><a> > </a></li>
+                <li class="position__item"><a class="position__link" href="">Регистрация инвестора</a></li>
+            </ul>
+        </div>
+        <div class="sign-form">
+            <div class="sign__title">
+                Регистрация инвестора
+            </div>
+            <div class="sign__forms">
+                <div class="form__sign-investor">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"><span
+                                    style="color: red">*</span> Ваша группа</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp" value="Инвестор" disabled readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span> ФИО</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Укажите ФИО" name="full_name"
+                                   value="{{ form.full_name.value|default_if_none:'' }}"
+                            >
+                            <div class="text-danger">
+                                    {{ form.full_name.errors }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span> E-mail</label>
+                            <input type="email" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Укажите адрес электронной почты"
+                                   value="{{ form.email.value|default_if_none:'' }}"
+                                   name="email">
+                            <div class="text-danger">
+                                    {{ form.email.errors }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword2" class="form-label"><span
+                                    style="color: red">*</span> Мобильный телефон</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1"
+                                   placeholder="87759145649"
+                                   name="phone"
+                                   value="{{ form.phone.value|default_if_none:'' }}"
+                            >
+                            <div class="text-danger">
+                                    {{ form.phone.errors }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span> Пароль</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Придумайте надёжный пароль" name="password"
+                                   value="{{ form.password.value|default_if_none:'' }}"
+                            >
+                            <div class="text-danger">
+                                    {{ form.password.errors }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span> Подтвердите пароль</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Повторите Ваш введенный пароль" name="repeat_password"
+                                   value="{{ form.repeat_password.value|default_if_none:'' }}"
+                            >
+                            <div class="text-danger">
+                                    {{ form.repeat_password.errors }}
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="agree" required>
+                            <label class="form-check-label" for="exampleCheck1">Я прочитал и принимаю <a
+                                    href="#">условия соглашения </a></label>
+                            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

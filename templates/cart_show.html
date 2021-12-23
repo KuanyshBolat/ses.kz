@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="order__cart">
+                <div class="order__top">
+                    <div class="order__cart-total">
+                        <b>Итого:</b> <span>{{ check.count }}</span> товара на сумму
+                    </div>
+                    <div class="order__cart-total-sum">
+                        <span>{{ check.sum }} </span>₸
+                    </div>
+                </div>
+                <div class="order__btn">
+                    <form method="post">
+                    {% csrf_token %}
+                        <button type="submit" class="btn btn-primary"
+                                {% if user.is_authenticated and user.company and user.company.is_init %}
+                                hidden
+                                {% endif %}
+                        >Оформить заказ
+
+                        </button>
+                        <a class="btn btn-success" target="_blank" href="/static/assets/excel/Счет%205%20от%2028.11.2021.xlsx"
+                                {% if user.is_authenticated and user.company and not user.company.is_init %}
+                                hidden
+                                {% endif %}
+                        >
+                            Счет на оплату
+                        </a>
+                    <div class="mt-1 d-flex justify-content-center">{{ order_status }}</div>
+                    </form>
+                </div>
+            </div>
+            <div class="cart__container">
+                <div class="page__position">
+                    <ul class="position__list">
+                        <li class="position__item"><a href="index.html" class="position__link">Главная</a></li>
+                        <li class="position__item"><a> > </a></li>
+                        <li class="position__item"><a href="#" class="position__link">Оформление заказов</a></li>
+                    </ul>
+                </div>
+                <div class="page__title">Оформление заказов</div>
+                <div class="cart__block">
+                    <div class="cart__title">
+                        Товары в заказе
+                    </div>
+                    <div class="cart__list">
+                        {% for office in offices %}
+                            <div class="cart__item">
+                                <div class="cart__img"><img src="{{ office.url }}"
+                                                            alt="">
+                                </div>
+                                <div class="cart__info-item">
+                                    <div class="info-item__name">
+                                        {{ office.room }} кабинет
+                                    </div>
+                                    <div class="bc__location">
+                                        <a href="#">2GIS</a>
+                                    </div>
+                                    <div class="bc__contract">
+                                        <a href="#">Договор аренды</a>
+                                    </div>
+                                </div>
+                                <div class="cart__item-sum">
+                                    <span>{{ office.price }}</span>₸
+                                </div>
+                                <div class="cart__sale-info">
+                                    <div class="item__shop-info">
+                                        <span>{{ office.business_center.name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                        {% for thing in things %}
+                            <div class="cart__item">
+                                <div class="cart__img"><img src="{{ thing.url }}" alt=""></div>
+                                <div class="cart__info-item">
+                                    <div class="info-item__name">
+                                        {{ thing.name }}
+                                    </div>
+                                    <div class="bc__location">
+                                        <a href="#">Характеристики</a>
+                                    </div>
+                                    <div class="bc__contract">
+                                        <a href="#">Гарантийный талон</a>
+                                    </div>
+                                    <div class="bc__choose">
+                                        <a href="#">Выбрать другое обрудование</a>
+                                    </div>
+                                </div>
+                                <div class="cart__item-sum">
+                                    <span>{{ thing.price }}</span>₸
+                                </div>
+                                <div class="cart__sale-info">
+                                    <div class="item__shop-info">
+                                        <span>{{ thing.distributor }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

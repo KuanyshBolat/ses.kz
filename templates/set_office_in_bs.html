@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="office__list">
+                {% for office in offices %}
+                    <div class="office__item">
+                        <div class="office__img">
+                            <img style="width: 300px;height: 177px" src="{{ office.url }}" alt="">
+                        </div>
+                        <div class="office__info">
+                            <div class="office__cab">{{ office.room }} кабинет</div>
+                            <div class="office__kv">{{ office.area }} кв.м</div>
+                            <div class="office__price">{{ office.price }} тг</div>
+                            <div class="office__desc">{{ office.description }}</div>
+                            <div class="office__choose">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="text" name="office_id" value="{{ office.id }}" hidden>
+                                    <button type='submit' class="btn btn-primary">Выбрать</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

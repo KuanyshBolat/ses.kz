@@ -1,0 +1,174 @@
+{% extends 'lk.html' %}
+{% block sign %}
+    <div class="sign__form">
+        <div class="page__position">
+            <ul class="position__list">
+                <li class="position__item"><a href="index.html" class="position__link">Главная</a></li>
+                <li class="position__item"><a> > </a></li>
+                <li class="position__item"><a href="profile.html" class="position__link">Мой кабинет</a>
+                </li>
+                <li class="position__item"><a> > </a></li>
+                <li class="position__item"><a class="position__link" href="">Регистрация компании</a></li>
+            </ul>
+        </div>
+        <div class="sign-form">
+            <div class="sign__title">
+                Регистрация компании
+            </div>
+            <div class="sign__forms">
+                <div class="form__sign-company">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"><span
+                                    style="color: red">*</span>
+                                Ваша
+                                группа</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp"
+                                   value="Компания" disabled readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                Наименование организации</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1"
+                                   placeholder="ТОО “Ромашка”" value="{{ form_company.name.value|default_if_none:'' }}"
+                                   name="name">
+                            <div class="text-danger">{{ form_company.errors.name }}</div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                Форма предпринимательства</label>
+                            <select class="form-select" aria-label="Default select example" name="type">
+                                {% for type_id, type_text in company_class.TYPES_CHOICES %}
+                                    <option value="{{ type_id }}"
+                                            {% if form_company.type.value == type_id|stringformat:"i" %}
+                                            selected
+                                            {% endif %}
+                                    >{{ type_text }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="text-danger">{{ form_company.errors.type }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                Юридический адрес</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="address"
+                                   placeholder="Укажите юр. адрес организации"
+                                   value="{{ form_company.address.value|default_if_none:'' }}">
+                            <div class="text-danger">{{ form_company.errors.address }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                БИН
+                                / ИИН</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="bin_iin"
+                                   placeholder="123456789123"
+                                   value="{{ form_company.bin_iin.value|default_if_none:'' }}">
+                            <div class="text-danger">{{ form_company.errors.bin_iin }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                ИИК</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="iik"
+                                   placeholder="Укажите расчётный счёт организации"
+                                   value="{{ form_company.iik.value|default_if_none:'' }}">
+                            <div class="text-danger">{{ form_company.errors.iik }}</div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                БИК</label>
+                            <input type="text" class="form-control" placeholder="Укажите БИК банка" name="bik"
+                                   value="{{ form_company.bik.value|default_if_none:'' }}">
+                            <div class="text-danger">{{ form_company.errors.bik }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                Наименование банка</label>
+                            <input type="text" class="form-control" name="bank_name"
+                                   placeholder="Укажите наименование банка"
+                                   value="{{ form_company.bank_name.value|default_if_none:'' }}">
+
+                            <div class="text-danger">{{ form_company.errors.bank_name }}</div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword2" class="form-label"><span
+                                    style="color: red">*</span> Мобильный телефон</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1"
+                                   placeholder="87759145649"
+                                   name="phone"
+                                   value="{{ form_user.phone.value|default_if_none:'' }}">
+                            <div class="text-danger">{{ form_user.phone.errors }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span> E-mail</label>
+                            <input type="email" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Укажите адрес электронной почты"
+                                   title="Пример почты: example@email.com"
+                                   name="email"
+                                   value="{{ form_user.email.value|default_if_none:'' }}"
+                            >
+                            <div class="text-danger">{{ form_user.errors.email }}</div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                ФИО
+                                ответственного сотрудника</label>
+                            <input type="text" class="form-control"
+                                   placeholder="Повторите Ваш введенный пароль"
+                                   name="full_name"
+                                   value="{{ form_user.full_name.value|default_if_none:'' }}">
+                            <div class="text-danger">{{ form_user.errors.full_name }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"><span
+                                    style="color: red">*</span>
+                                Пароль</label>
+                            <input type="password" class="form-control"
+                                   placeholder="Придумайте надёжный пароль"
+                                   name="password"
+                                   value="{{ form_user.password.value|default_if_none:'' }}"
+                            >
+                            <div class="text-danger">{{ form_user.errors.password }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">
+                                <span style="color: red">*</span>
+                                Подтвердите пароль
+                            </label>
+                            <input type="password" class="form-control"
+                                   placeholder="Повторите Ваш введенный пароль"
+                                   name="repeat_password"
+                                   value="{{ form_user.repeat_password.value|default_if_none:'' }}"
+                            >
+                            <div class="text-danger">{{ form_user.errors.repeat_password }}</div>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                            <label class="form-check-label" for="exampleCheck1">Я прочитал и принимаю <a
+                                    href="#">условия
+                                соглашения </a></label>
+
+                            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

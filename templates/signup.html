@@ -1,0 +1,52 @@
+{% extends 'lk.html' %}
+{% block sign %}
+    <div class="sign__form">
+    <div class="page__position">
+        <ul class="position__list">
+            <li class="position__item"><a href="index.html" class="position__link">Главная</a></li>
+            <li class="position__item"><a> > </a></li>
+            <li class="position__item"><a href="profile.html" class="position__link">Мой кабинет</a>
+            </li>
+            <li class="position__item"><a> > </a></li>
+            <li class="position__item"><a class="position__link" href="">Регистрация</a></li>
+        </ul>
+    </div>
+    <div class="sign-form">
+        <div class="sign__title">
+            Регистрация
+        </div>
+        <div class="sign__forms">
+            <div class="form__sign">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp"
+                               placeholder="Введите Вашу электронную почту">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Пароль</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1"
+                               placeholder="Введите Ваш пароль">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                </form>
+            </div>
+            <div class="form__sign-up">
+                <div class="sign__text">
+                    Создание учетной записи поможет покупать быстрее. Вы сможете контролировать
+                    состояние заказа, а также просматривать заказы, сделанные ранее. Постоянным
+                    покупателям мы предлагаем гибкую систему скидок.
+                </div>
+                <div class="sign__btn">
+                    <button type="submit" class="btn btn-primary">Регистарция</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

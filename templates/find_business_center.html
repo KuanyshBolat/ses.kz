@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section>
+    <div class="container">
+        <div class="bc__list">
+            {% for business_center in business_centers %}
+            <div class="bc__item">
+                <div class="bc__img"><img style="width: 350px; height: 263px" src="{{ business_center.url }}" alt=""></div>
+                <div class="bc__info-block">
+                    <div class="bc__title">{{ business_center.name }}</div>
+                    <div class="bc__info">
+                        <div class="info__item adres">
+                            Адрес: <span>{{ business_center.address }}</span>
+                        </div>
+{#                        <div class="info__item site">#}
+{#                            Сайт: <span><a href="#">Almaty Towers</a></span>#}
+{#                        </div>#}
+                        <div class="info__item time">
+                            Время работы: <span>пн - пт 08:00 до 17:00, обед c 12:00 до 13:00</span>
+                        </div>
+{#                        <div class="info__item map">#}
+{#                            2GIS: <span><a href="#">Almaty Towers</a></span>#}
+{#                        </div>#}
+                    </div>
+                    <div class="bc__office-list">
+                        <a href="/set_office_in_bs/?business_center_id={{ business_center.id }}">Показать свободные офисы</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

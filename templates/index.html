@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="slider">
+                <img src="/static/assets/img/banners/1.png" alt="">
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="home-page-info">
+                <div class="info-items info-i-1"><span>Доставка <br> до вашего офиса</span></div>
+                <div class="info-items info-i-2"><span> Низкие <br> цены </span></div>
+                <div class="info-items info-i-3"><span>Гарантия <br> качества</span></div>
+                <div class="info-items info-i-4"><span>Консультация <br> специалистов</span></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="brands">
+                <a target="_blank" href="https://www.canon.ru/">
+                    <div class="brand"><img src="/static/assets/img/brands/Canon_logo_vector%202.svg" alt=""></div>
+                </a>
+                <a target="_blank" href="https://www.microsoft.com/ru-kz">
+                    <div class="brand"><img src="/static/assets/img/brands/microsoft%201.svg" alt=""></div>
+                </a>
+                <a target="_blank" href="https://www.hp.com/kz-ru/home.html">
+                    <div class="brand"><img src="/static/assets/img/brands/600px-HP_New_Logo_2D%201.svg" alt=""></div>
+                </a>
+                <a target="_blank" href="https://www.samsung.com/kz_ru/">
+                    <div class="brand"><img src="/static/assets/img/brands/Sams%201.svg" alt=""></div>
+                </a>
+                <a target="_blank" href="https://www.lenovo.com/kz/ru/">
+                    <div class="brand"><img src="/static/assets/img/brands/Lenovo-logo%201.svg" alt=""></div>
+                </a>
+                <a target="_blank" href="https://www.oppo.com/kz/">
+                    <div class="brand"><img src="/static/assets/img/brands/oppo%201.svg" alt=""></div>
+                </a>
+                <a target="_blank" href="https://www.lg.com/kz">
+                    <div class="brand"><img src="/static/assets/img/brands/1280px-LG_Logo_Slogan_3d%201.svg" alt="">
+                    </div>
+                </a>
+                <a target="_blank" href="https://epson.kz/">
+                    <div class="brand"><img src="/static/assets/img/brands/2560px-Epson_logo%201.svg" alt=""></div>
+                </a>
+                <a target="_blank" href="https://www.huawei.com/kz/">
+                    <div class="brand"><img
+                            src="/static/assets/img/brands/png-transparent-logo-huawei-customer-service-centre-华为-huawei-y-6-2018-dual-sim-4g-16gb-blue-hardware-electronic-logo-oppo-emblem-text-logo%201.svg"
+                            alt=""></div>
+                </a>
+            </div>
+        </div>
+    </section>
+        <div class="modal fade" id="registrationEndModal" tabindex="-1" aria-labelledby="registrationEndModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registrationEndModalLabel">Регистрация</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="registrationEndModal" aria-label="Close" onclick="registrationEndModalToggle()"></button>
+                    </div>
+                    <div class="modal-body">
+                        Спасибо что зарегистрировались у нас! Когда ваш аккаунт пройдет подтверждение мы вас уведомим !
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="registrationEndModalToggle()">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+{% block additional_script %}
+    <script src="/static/assets/scripts/registration_end.js"></script>
+{% endblock %}

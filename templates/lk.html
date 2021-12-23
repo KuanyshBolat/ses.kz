@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="sign__container">
+                <div class="sign__nav">
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">Личный кабинет</a></div>
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">Мой кабинет</a></div>
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">Личные данные</a></div>
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">Изменить пароль</a></div>
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">Адресная книга</a></div>
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">Избранное</a></div>
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">История заказов</a></div>
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">Документы</a></div>
+                    <div class="sign__nav-item"><a href="" class="sign__nav-link">Помощь</a></div>
+                    <div class="sign__nav-item"><a href="/logout" class="sign__nav-link">Выход</a></div>
+                </div>
+                {% block sign %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
